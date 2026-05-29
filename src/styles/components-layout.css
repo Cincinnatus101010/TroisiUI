@@ -1,0 +1,82 @@
+/* Layout */
+
+.troisi-box {
+	display: block;
+}
+
+.troisi-box--p-0 {
+	padding: var(--troisi-space-0);
+}
+.troisi-box--p-2 {
+	padding: var(--troisi-space-2);
+}
+.troisi-box--p-4 {
+	padding: var(--troisi-space-4);
+}
+.troisi-box--p-6 {
+	padding: var(--troisi-space-6);
+}
+
+.troisi-box--rounded {
+	border-radius: var(--troisi-radius-lg);
+}
+
+.troisi-box--bordered {
+	border: 1px solid var(--troisi-border);
+}
+
+.troisi-box--elevated {
+	background: var(--troisi-bg-elevated);
+	box-shadow: var(--troisi-elevation-1);
+}
+
+.troisi-grid {
+	display: grid;
+	gap: var(--troisi-space-4);
+}
+
+.troisi-grid--cols-1 {
+	grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+.troisi-grid--cols-2 {
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.troisi-grid--cols-3 {
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.troisi-grid--cols-4 {
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.troisi-grid--cols-6 {
+	grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+.troisi-grid--cols-12 {
+	grid-template-columns: repeat(12, minmax(0, 1fr));
+}
+
+.troisi-grid--gap-2 {
+	gap: var(--troisi-space-2);
+}
+.troisi-grid--gap-6 {
+	gap: var(--troisi-space-6);
+}
+.troisi-grid--gap-8 {
+	gap: var(--troisi-space-8);
+}
+
+.troisi-spacer {
+	flex: 1 1 auto;
+}
+
+.troisi-spacer--fixed-4 {
+	flex: none;
+	height: var(--troisi-space-4);
+}
+.troisi-spacer--fixed-8 {
+	flex: none;
+	height: var(--troisi-space-8);
+}
+.troisi-spacer--fixed-16 {
+	flex: none;
+	height: var(--troisi-space-16);
+}

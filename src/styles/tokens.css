@@ -1,0 +1,164 @@
+/* Troisi UI design tokens — light/dark via data-troisi-theme + system preference */
+
+/* Shared scales (theme-independent) */
+:root,
+[data-troisi-theme="light"],
+[data-troisi-theme="dark"],
+.troisi-root {
+	--troisi-font-sans: "Instrument Sans", system-ui, sans-serif;
+	--troisi-font-mono: ui-monospace, "Cascadia Code", monospace;
+
+	--troisi-text-xs: 0.75rem;
+	--troisi-text-sm: 0.875rem;
+	--troisi-text-base: 1rem;
+	--troisi-text-lg: 1.125rem;
+	--troisi-text-xl: 1.25rem;
+	--troisi-text-2xl: 1.5rem;
+	--troisi-text-3xl: 1.875rem;
+	--troisi-text-4xl: 2.25rem;
+
+	--troisi-leading-tight: 1.25;
+	--troisi-leading-normal: 1.5;
+	--troisi-leading-relaxed: 1.625;
+
+	--troisi-weight-normal: 400;
+	--troisi-weight-medium: 500;
+	--troisi-weight-semibold: 600;
+	--troisi-weight-bold: 700;
+
+	--troisi-space-0: 0;
+	--troisi-space-1: 0.25rem;
+	--troisi-space-2: 0.5rem;
+	--troisi-space-3: 0.75rem;
+	--troisi-space-4: 1rem;
+	--troisi-space-5: 1.25rem;
+	--troisi-space-6: 1.5rem;
+	--troisi-space-8: 2rem;
+	--troisi-space-10: 2.5rem;
+	--troisi-space-12: 3rem;
+	--troisi-space-16: 4rem;
+
+	--troisi-radius-sm: 0.375rem;
+	--troisi-radius-md: 0.5rem;
+	--troisi-radius-lg: 0.75rem;
+	--troisi-radius-full: 9999px;
+
+	--troisi-container-max: 64rem;
+
+	--troisi-z-dropdown: 1000;
+	--troisi-z-sticky: 1020;
+	--troisi-z-modal: 1100;
+	--troisi-z-toast: 1200;
+
+	--troisi-duration-fast: 150ms;
+	--troisi-duration-normal: 250ms;
+
+	--troisi-switch-thumb: #a1a1aa;
+}
+
+/* Light theme (default + explicit) — exclude :root when dark is set */
+:root:not([data-troisi-theme="dark"]),
+:root[data-troisi-theme="light"],
+.troisi-root[data-troisi-theme="light"] {
+	color-scheme: light;
+
+	--troisi-bg: #fafafa;
+	--troisi-bg-elevated: #ffffff;
+	--troisi-fg: #18181b;
+	--troisi-fg-muted: #52525b;
+	--troisi-fg-subtle: #71717a;
+	--troisi-border: #e4e4e7;
+	--troisi-border-strong: #d4d4d8;
+
+	--troisi-primary: #18181b;
+	--troisi-primary-fg: #fafafa;
+	--troisi-primary-hover: #27272a;
+
+	--troisi-success: #059669;
+	--troisi-success-bg: #ecfdf5;
+	--troisi-warning: #d97706;
+	--troisi-warning-bg: #fffbeb;
+	--troisi-danger: #dc2626;
+	--troisi-danger-bg: #fef2f2;
+
+	--troisi-focus-ring: #a1a1aa;
+
+	--troisi-shadow-sm: 0 1px 2px rgb(0 0 0 / 0.05);
+	--troisi-shadow-md:
+		0 4px 6px -1px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.06);
+	--troisi-shadow-lg:
+		0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.06);
+
+	--troisi-elevation-1: var(--troisi-shadow-sm);
+	--troisi-elevation-2: var(--troisi-shadow-md);
+	--troisi-elevation-3: var(--troisi-shadow-lg);
+}
+
+/* Dark theme (explicit) */
+:root[data-troisi-theme="dark"],
+.troisi-root[data-troisi-theme="dark"] {
+	color-scheme: dark;
+
+	--troisi-bg: #09090b;
+	--troisi-bg-elevated: #18181b;
+	--troisi-fg: #fafafa;
+	--troisi-fg-muted: #a1a1aa;
+	--troisi-fg-subtle: #71717a;
+	--troisi-border: #27272a;
+	--troisi-border-strong: #3f3f46;
+
+	--troisi-primary: #fafafa;
+	--troisi-primary-fg: #18181b;
+	--troisi-primary-hover: #e4e4e7;
+
+	--troisi-success-bg: #052e21;
+	--troisi-warning-bg: #451a03;
+	--troisi-danger-bg: #450a0a;
+
+	--troisi-focus-ring: #52525b;
+
+	--troisi-shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+	--troisi-shadow-md:
+		0 4px 6px -1px rgb(0 0 0 / 0.45), 0 2px 4px -2px rgb(0 0 0 / 0.4);
+	--troisi-shadow-lg:
+		0 10px 15px -3px rgb(0 0 0 / 0.5), 0 4px 6px -4px rgb(0 0 0 / 0.45);
+
+	--troisi-elevation-1: var(--troisi-shadow-sm);
+	--troisi-elevation-2: var(--troisi-shadow-md);
+	--troisi-elevation-3: var(--troisi-shadow-lg);
+}
+
+/* System preference — only on :root; .troisi-root inherits (avoids body overriding explicit light) */
+@media (prefers-color-scheme: dark) {
+	:root:not([data-troisi-theme="light"]):not([data-troisi-theme="dark"]) {
+		color-scheme: dark;
+
+		--troisi-bg: #09090b;
+		--troisi-bg-elevated: #18181b;
+		--troisi-fg: #fafafa;
+		--troisi-fg-muted: #a1a1aa;
+		--troisi-fg-subtle: #71717a;
+		--troisi-border: #27272a;
+		--troisi-border-strong: #3f3f46;
+
+		--troisi-primary: #fafafa;
+		--troisi-primary-fg: #18181b;
+		--troisi-primary-hover: #e4e4e7;
+
+		--troisi-success-bg: #052e21;
+		--troisi-warning-bg: #451a03;
+		--troisi-danger-bg: #450a0a;
+
+		--troisi-focus-ring: #52525b;
+
+		--troisi-shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+		--troisi-shadow-md:
+			0 4px 6px -1px rgb(0 0 0 / 0.45), 0 2px 4px -2px rgb(0 0 0 / 0.4);
+		--troisi-shadow-lg:
+			0 10px 15px -3px rgb(0 0 0 / 0.5), 0 4px 6px -4px rgb(0 0 0 / 0.45);
+
+		--troisi-elevation-1: var(--troisi-shadow-sm);
+		--troisi-elevation-2: var(--troisi-shadow-md);
+		--troisi-elevation-3: var(--troisi-shadow-lg);
+	}
+}

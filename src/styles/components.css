@@ -1,0 +1,269 @@
+/* Troisi UI component styles — BEM-style .troisi-* classes */
+
+/* Button */
+.troisi-button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	border: none;
+	border-radius: var(--troisi-radius-lg);
+	font-family: inherit;
+	font-weight: var(--troisi-weight-medium);
+	line-height: 1;
+	cursor: pointer;
+	transition:
+		background-color 0.15s ease,
+		color 0.15s ease,
+		border-color 0.15s ease;
+}
+
+.troisi-button:focus-visible {
+	outline: 2px solid var(--troisi-focus-ring);
+	outline-offset: 2px;
+}
+
+.troisi-button:disabled {
+	opacity: 0.5;
+	pointer-events: none;
+	cursor: not-allowed;
+}
+
+.troisi-button--primary {
+	background: var(--troisi-primary);
+	color: var(--troisi-primary-fg);
+}
+
+.troisi-button--primary:hover:not(:disabled) {
+	background: var(--troisi-primary-hover);
+}
+
+.troisi-button--secondary {
+	background: var(--troisi-bg-elevated);
+	color: var(--troisi-fg);
+	border: 1px solid var(--troisi-border-strong);
+}
+
+.troisi-button--secondary:hover:not(:disabled) {
+	background: var(--troisi-bg);
+}
+
+.troisi-button--ghost {
+	background: transparent;
+	color: var(--troisi-fg-muted);
+}
+
+.troisi-button--ghost:hover:not(:disabled) {
+	background: var(--troisi-border);
+	color: var(--troisi-fg);
+}
+
+.troisi-button--sm {
+	height: 2rem;
+	padding: 0 var(--troisi-space-3);
+	font-size: var(--troisi-text-sm);
+}
+
+.troisi-button--md {
+	height: 2.5rem;
+	padding: 0 var(--troisi-space-4);
+	font-size: var(--troisi-text-sm);
+}
+
+.troisi-button--lg {
+	height: 3rem;
+	padding: 0 var(--troisi-space-6);
+	font-size: var(--troisi-text-base);
+}
+
+/* Input */
+.troisi-input {
+	display: block;
+	width: 100%;
+	height: 2.5rem;
+	padding: 0 var(--troisi-space-3);
+	font-family: inherit;
+	font-size: var(--troisi-text-sm);
+	color: var(--troisi-fg);
+	background: var(--troisi-bg-elevated);
+	border: 1px solid var(--troisi-border-strong);
+	border-radius: var(--troisi-radius-lg);
+	transition:
+		border-color 0.15s ease,
+		box-shadow 0.15s ease;
+}
+
+.troisi-input::placeholder {
+	color: var(--troisi-fg-subtle);
+}
+
+.troisi-input:focus {
+	outline: none;
+	border-color: var(--troisi-fg-muted);
+	box-shadow: 0 0 0 3px
+		color-mix(in srgb, var(--troisi-focus-ring) 35%, transparent);
+}
+
+.troisi-input:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+.troisi-input--invalid {
+	border-color: var(--troisi-danger);
+}
+
+/* Typography */
+.troisi-text {
+	margin: 0;
+	font-family: inherit;
+	color: var(--troisi-fg);
+}
+
+.troisi-text--display {
+	font-size: var(--troisi-text-4xl);
+	font-weight: var(--troisi-weight-bold);
+	line-height: var(--troisi-leading-tight);
+	letter-spacing: -0.02em;
+}
+
+.troisi-text--h1 {
+	font-size: var(--troisi-text-3xl);
+	font-weight: var(--troisi-weight-bold);
+	line-height: var(--troisi-leading-tight);
+}
+
+.troisi-text--h2 {
+	font-size: var(--troisi-text-2xl);
+	font-weight: var(--troisi-weight-semibold);
+	line-height: var(--troisi-leading-tight);
+}
+
+.troisi-text--h3 {
+	font-size: var(--troisi-text-lg);
+	font-weight: var(--troisi-weight-semibold);
+	line-height: var(--troisi-leading-normal);
+}
+
+.troisi-text--body {
+	font-size: var(--troisi-text-base);
+	font-weight: var(--troisi-weight-normal);
+	line-height: var(--troisi-leading-relaxed);
+}
+
+.troisi-text--small {
+	font-size: var(--troisi-text-sm);
+	line-height: var(--troisi-leading-normal);
+}
+
+.troisi-text--caption {
+	font-size: var(--troisi-text-xs);
+	line-height: var(--troisi-leading-normal);
+}
+
+.troisi-text--muted {
+	color: var(--troisi-fg-muted);
+}
+
+.troisi-text--subtle {
+	color: var(--troisi-fg-subtle);
+}
+
+/* Layout */
+.troisi-container {
+	width: 100%;
+	max-width: var(--troisi-container-max);
+	margin-inline: auto;
+	padding-inline: var(--troisi-space-6);
+}
+
+.troisi-stack {
+	display: flex;
+	flex-direction: column;
+}
+
+.troisi-stack--row {
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.troisi-stack--gap-1 {
+	gap: var(--troisi-space-1);
+}
+.troisi-stack--gap-2 {
+	gap: var(--troisi-space-2);
+}
+.troisi-stack--gap-3 {
+	gap: var(--troisi-space-3);
+}
+.troisi-stack--gap-4 {
+	gap: var(--troisi-space-4);
+}
+.troisi-stack--gap-6 {
+	gap: var(--troisi-space-6);
+}
+.troisi-stack--gap-8 {
+	gap: var(--troisi-space-8);
+}
+
+.troisi-stack--align-center {
+	align-items: center;
+}
+
+.troisi-divider {
+	border: none;
+	border-top: 1px solid var(--troisi-border);
+	margin: 0;
+}
+
+/* Card */
+.troisi-card {
+	border-radius: var(--troisi-radius-lg);
+	border: 1px solid var(--troisi-border);
+	background: var(--troisi-bg-elevated);
+	padding: var(--troisi-space-6);
+	box-shadow: var(--troisi-shadow-sm);
+}
+
+.troisi-card__header {
+	margin-bottom: var(--troisi-space-4);
+}
+
+.troisi-card__title {
+	margin: 0 0 var(--troisi-space-1);
+	font-size: var(--troisi-text-lg);
+	font-weight: var(--troisi-weight-semibold);
+	color: var(--troisi-fg);
+}
+
+.troisi-card__description {
+	margin: 0;
+	font-size: var(--troisi-text-sm);
+	color: var(--troisi-fg-muted);
+	line-height: var(--troisi-leading-normal);
+}
+
+/* Badge */
+.troisi-badge {
+	display: inline-flex;
+	align-items: center;
+	padding: 0.125rem var(--troisi-space-2);
+	font-size: var(--troisi-text-xs);
+	font-weight: var(--troisi-weight-medium);
+	border-radius: var(--troisi-radius-full);
+	line-height: 1.25;
+}
+
+.troisi-badge--default {
+	background: var(--troisi-border);
+	color: var(--troisi-fg-muted);
+}
+
+.troisi-badge--success {
+	background: var(--troisi-success-bg);
+	color: var(--troisi-success);
+}
+
+.troisi-badge--warning {
+	background: var(--troisi-warning-bg);
+	color: var(--troisi-warning);
+}

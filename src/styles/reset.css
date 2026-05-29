@@ -1,0 +1,22 @@
+/* Minimal base — consumers can override */
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+
+.troisi-root {
+	font-family: var(--troisi-font-sans);
+	font-size: var(--troisi-text-base);
+	line-height: var(--troisi-leading-normal);
+	color: var(--troisi-fg);
+	background: var(--troisi-bg);
+	-webkit-font-smoothing: antialiased;
+}
