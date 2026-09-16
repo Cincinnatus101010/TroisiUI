@@ -33,7 +33,8 @@
 	justify-content: space-between;
 	gap: var(--troisi-space-4);
 	width: 100%;
-	padding: var(--troisi-space-4) var(--troisi-space-6);
+	padding-block: var(--troisi-space-4);
+	padding-inline: var(--troisi-container-padding-inline);
 }
 
 .troisi-navbar__inner--contained {

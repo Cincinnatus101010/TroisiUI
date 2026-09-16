@@ -170,15 +170,22 @@
 
 /* Layout */
 .troisi-container {
+	box-sizing: border-box;
 	width: 100%;
 	max-width: var(--troisi-container-max);
 	margin-inline: auto;
-	padding-inline: var(--troisi-space-6);
+	padding-inline: var(--troisi-container-padding-inline);
+}
+
+.troisi-container--flush {
+	padding-inline: 0;
 }
 
 .troisi-stack {
 	display: flex;
 	flex-direction: column;
+	min-width: 0;
+	max-width: 100%;
 }
 
 .troisi-stack--row {

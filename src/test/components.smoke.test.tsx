@@ -90,6 +90,11 @@ describe("component smoke tests", () => {
 		);
 		expect(document.querySelector(".troisi-container")).toBeTruthy();
 		expect(document.querySelector(".troisi-grid--cols-2")).toBeTruthy();
+
+		const { container: flushRoot } = renderWithTroisi(
+			<Container padding={false}>flush</Container>,
+		);
+		expect(flushRoot.querySelector(".troisi-container--flush")).toBeTruthy();
 	});
 
 	it("renders typography and icon", () => {

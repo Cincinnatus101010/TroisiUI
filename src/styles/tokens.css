@@ -44,6 +44,12 @@
 	--troisi-radius-full: 9999px;
 
 	--troisi-container-max: 64rem;
+	/* Shared page gutter — Container, Navbar, etc. */
+	--troisi-container-padding-inline: clamp(
+		var(--troisi-space-4),
+		4vw,
+		var(--troisi-space-6)
+	);
 
 	--troisi-z-dropdown: 1000;
 	--troisi-z-sticky: 1020;

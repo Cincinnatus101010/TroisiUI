@@ -13,10 +13,13 @@ body {
 }
 
 .troisi-root {
+	width: 100%;
+	max-width: 100%;
 	font-family: var(--troisi-font-sans);
 	font-size: var(--troisi-text-base);
 	line-height: var(--troisi-leading-normal);
 	color: var(--troisi-fg);
 	background: var(--troisi-bg);
 	-webkit-font-smoothing: antialiased;
+	overflow-x: clip;
 }
