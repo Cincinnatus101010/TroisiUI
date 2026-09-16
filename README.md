@@ -60,14 +60,13 @@ CSS uses semantic tokens (`--troisi-bg`, `--troisi-fg`, …) and `color-scheme` 
 
 The package scope **`@iantroisi`** matches the npm user — no org setup required.
 
-1. Enable [2FA “Authorization and publishing”](https://www.npmjs.com/settings/iantroisi/tfa).
-2. Publish locally:
+**Automatic:** pushing to `main` with changes under `src/components/`, `src/styles/`, exports, hooks, or theme runs the **Publish npm** workflow. If the current `version` is already on npm, CI bumps the **patch** version, publishes, and commits `package.json` with `[skip publish]` so it does not loop.
 
-```bash
-npm publish --access public --otp=123456
-```
+**One-time setup:** add a [granular npm token](https://www.npmjs.com/settings/iantroisi/tokens) (publish access to `@iantroisi/ui`) as the GitHub repo secret **`NPM_TOKEN`**.
 
-3. For CI: [granular npm token](https://www.npmjs.com/settings/iantroisi/tokens) with publish access to `@iantroisi/ui`, GitHub secret **`NPM_TOKEN`**, then a [GitHub Release](https://github.com/Cincinnatus101010/TroisiUI/releases/new).
+**Manual:** `npm publish --access public --otp=…` locally, or create a [GitHub Release](https://github.com/Cincinnatus101010/TroisiUI/releases/new) to publish the checked-in version (useful for minor/major bumps you set in `package.json` first).
+
+Skip auto-publish for a commit by including **`[skip publish]`** in the commit message.
 
 ## Development
 
