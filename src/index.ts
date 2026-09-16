@@ -8,6 +8,7 @@ export {
 } from "./components/Accordion";
 /* Feedback */
 export { Alert, type AlertProps, type AlertVariant } from "./components/Alert";
+export { AppShell, type AppShellProps } from "./components/AppShell";
 export { Avatar, type AvatarProps, type AvatarSize } from "./components/Avatar";
 export { Badge, type BadgeProps, type BadgeVariant } from "./components/Badge";
 export { Box, type BoxProps } from "./components/Box";
@@ -80,18 +81,28 @@ export {
 } from "./components/Menu";
 export { Modal, type ModalProps } from "./components/Modal";
 export { Navbar, type NavbarProps } from "./components/Navbar";
+export { PageHeader, type PageHeaderProps } from "./components/PageHeader";
 export { Pagination, type PaginationProps } from "./components/Pagination";
 export { Popover, type PopoverProps } from "./components/Popover";
 export { Portal, type PortalProps } from "./components/Portal";
 export { Progress, type ProgressProps } from "./components/Progress";
 export { Radio, type RadioProps } from "./components/Radio";
+export { ScrollArea, type ScrollAreaProps } from "./components/ScrollArea";
 export { SearchInput, type SearchInputProps } from "./components/SearchInput";
 export { Select, type SelectProps } from "./components/Select";
 export {
 	Sidebar,
+	SidebarContent,
+	type SidebarContentProps,
+	SidebarFooter,
+	type SidebarFooterProps,
+	SidebarHeader,
+	type SidebarHeaderProps,
 	SidebarItem,
 	type SidebarItemProps,
 	type SidebarProps,
+	SidebarSection,
+	type SidebarSectionProps,
 } from "./components/Sidebar";
 export {
 	Skeleton,

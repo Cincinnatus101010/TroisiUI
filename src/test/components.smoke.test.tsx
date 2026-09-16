@@ -4,6 +4,7 @@ import { describe, expect, it, vi } from "vitest";
 import {
 	Accordion,
 	Alert,
+	AppShell,
 	Avatar,
 	Badge,
 	Box,
@@ -38,14 +39,20 @@ import {
 	MenuItem,
 	Modal,
 	Navbar,
+	PageHeader,
 	Pagination,
 	Popover,
 	Progress,
 	Radio,
+	ScrollArea,
 	SearchInput,
 	Select,
 	Sidebar,
+	SidebarContent,
+	SidebarFooter,
+	SidebarHeader,
 	SidebarItem,
+	SidebarSection,
 	Skeleton,
 	Slider,
 	Spacer,
@@ -192,10 +199,27 @@ describe("component smoke tests", () => {
 			<>
 				<Navbar brand="Troisi">nav</Navbar>
 				<Sidebar>
-					<SidebarItem href="#" active>
-						Home
-					</SidebarItem>
+					<SidebarHeader>Studio</SidebarHeader>
+					<SidebarContent>
+						<SidebarSection title="Main">
+							<SidebarItem href="#" active>
+								Home
+							</SidebarItem>
+						</SidebarSection>
+					</SidebarContent>
+					<SidebarFooter>v0.1</SidebarFooter>
 				</Sidebar>
+				<AppShell
+					sidebar={
+						<Sidebar>
+							<SidebarItem href="#">Dash</SidebarItem>
+						</Sidebar>
+					}
+					navbar={<Navbar brand="App" />}
+				>
+					<PageHeader title="Dashboard" description="Overview" />
+					<ScrollArea style={{ maxHeight: 120 }}>scroll</ScrollArea>
+				</AppShell>
 				<Breadcrumb>
 					<BreadcrumbItem>App</BreadcrumbItem>
 				</Breadcrumb>

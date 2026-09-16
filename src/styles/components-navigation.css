@@ -60,14 +60,79 @@
 	flex-direction: column;
 	gap: var(--troisi-space-1);
 	width: 16rem;
-	padding: var(--troisi-space-4);
+	flex-shrink: 0;
 	border-right: 1px solid var(--troisi-border);
 	background: var(--troisi-bg-elevated);
 	min-height: 100%;
+	min-width: 0;
+}
+
+.troisi-sidebar:not(
+	:has(
+		.troisi-sidebar__header,
+		.troisi-sidebar__content,
+		.troisi-sidebar__footer
+	)
+) {
+	padding: var(--troisi-space-4);
+}
+
+.troisi-sidebar:has(
+	.troisi-sidebar__header,
+	.troisi-sidebar__content,
+	.troisi-sidebar__footer
+) {
+	gap: 0;
+}
+
+.troisi-sidebar--collapsed {
+	width: 4.5rem;
+}
+
+.troisi-sidebar__header {
+	flex-shrink: 0;
+	padding: var(--troisi-space-4);
+	border-bottom: 1px solid var(--troisi-border);
+}
+
+.troisi-sidebar__content {
+	display: flex;
+	flex: 1 1 auto;
+	flex-direction: column;
+	gap: var(--troisi-space-4);
+	min-height: 0;
+	padding: var(--troisi-space-2);
+	overflow-y: auto;
+}
+
+.troisi-sidebar__footer {
+	flex-shrink: 0;
+	margin-top: auto;
+	padding: var(--troisi-space-4);
+	border-top: 1px solid var(--troisi-border);
+}
+
+.troisi-sidebar__section {
+	display: flex;
+	flex-direction: column;
+	gap: var(--troisi-space-1);
+}
+
+.troisi-sidebar__section-title {
+	margin: 0;
+	padding: var(--troisi-space-2) var(--troisi-space-3);
+	font-size: var(--troisi-text-xs);
+	font-weight: var(--troisi-weight-semibold);
+	line-height: var(--troisi-leading-normal);
+	color: var(--troisi-fg-subtle);
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
 }
 
 .troisi-sidebar__item {
-	display: block;
+	display: flex;
+	align-items: center;
+	gap: var(--troisi-space-3);
 	width: 100%;
 	padding: var(--troisi-space-2) var(--troisi-space-3);
 	border: none;
@@ -80,6 +145,44 @@
 	text-decoration: none;
 	background: transparent;
 	cursor: pointer;
+}
+
+.troisi-sidebar__item-icon {
+	display: inline-flex;
+	flex-shrink: 0;
+	align-items: center;
+	justify-content: center;
+	width: 1.25rem;
+	height: 1.25rem;
+}
+
+.troisi-sidebar__item-label {
+	flex: 1 1 auto;
+	min-width: 0;
+}
+
+.troisi-sidebar__item--disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+	pointer-events: none;
+}
+
+.troisi-sidebar--collapsed .troisi-sidebar__item-label,
+.troisi-sidebar--collapsed .troisi-sidebar__section-title {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}
+
+.troisi-sidebar--collapsed .troisi-sidebar__item {
+	justify-content: center;
+	padding-inline: var(--troisi-space-2);
 }
 
 .troisi-sidebar__item:focus-visible {
