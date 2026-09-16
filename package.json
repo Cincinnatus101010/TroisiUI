@@ -1,15 +1,27 @@
 {
-  "name": "@troisi/ui",
+  "name": "@iantroisi/ui",
   "version": "0.1.0",
   "description": "Troisi UI \u2014 React components with a from-scratch CSS design system",
   "type": "module",
   "packageManager": "bun@1.3.11",
   "license": "MIT",
+  "author": "Ian Troisi",
+  "homepage": "https://github.com/Cincinnatus101010/TroisiUI#readme",
+  "bugs": {
+    "url": "https://github.com/Cincinnatus101010/TroisiUI/issues"
+  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Cincinnatus101010/TroisiUI.git"
+    "url": "git+https://github.com/Cincinnatus101010/TroisiUI.git"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "main": "./dist/index.js",
+  "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
@@ -27,6 +39,8 @@
   "scripts": {
     "build": "tsup",
     "prepare": "bun run build",
+    "prepublishOnly": "bun run lint && bun run typecheck && bun run test && bun run build",
+    "pack:check": "npm pack --dry-run",
     "typecheck": "tsc --noEmit",
     "dev": "tsup --watch",
     "lint": "biome check .",

@@ -1,16 +1,25 @@
-# Troisi UI (`@troisi/ui`)
+# Troisi UI (`@iantroisi/ui`)
 
 Open-source React component library with a **from-scratch CSS design system** — no Tailwind. Full **light / dark / system** theme support.
 
 ## Install
 
+Published on npm as **`@iantroisi/ui`** (requires React 19):
+
 ```bash
-bun add @troisi/ui
+npm install @iantroisi/ui
+# or: bun add @iantroisi/ui   |   pnpm add @iantroisi/ui
+```
+
+Until the first npm release, install from GitHub:
+
+```bash
+npm install github:Cincinnatus101010/TroisiUI
 ```
 
 ```tsx
-import "@troisi/ui/styles.css";
-import { Button, ThemeProvider } from "@troisi/ui";
+import "@iantroisi/ui/styles.css";
+import { Button, ThemeProvider } from "@iantroisi/ui";
 
 export default function RootLayout({ children }) {
   return (
@@ -25,7 +34,7 @@ export default function RootLayout({ children }) {
 }
 ```
 
-Next.js: add `transpilePackages: ["@troisi/ui"]` in `next.config`.
+Next.js: add `transpilePackages: ["@iantroisi/ui"]` in `next.config`.
 
 ## Theming
 
@@ -36,7 +45,7 @@ Next.js: add `transpilePackages: ["@troisi/ui"]` in `next.config`.
 | **Dark** | `data-troisi-theme="dark"` |
 
 ```tsx
-import { ThemeProvider, useTheme, applyTheme } from "@troisi/ui";
+import { ThemeProvider, useTheme, applyTheme } from "@iantroisi/ui";
 
 // React API
 const { theme, setTheme, resolvedTheme } = useTheme();
@@ -46,6 +55,19 @@ applyTheme(document.documentElement, "dark");
 ```
 
 CSS uses semantic tokens (`--troisi-bg`, `--troisi-fg`, …) and `color-scheme` for native controls.
+
+## Publishing (maintainers)
+
+The package scope **`@iantroisi`** matches the npm user — no org setup required.
+
+1. Enable [2FA “Authorization and publishing”](https://www.npmjs.com/settings/iantroisi/tfa).
+2. Publish locally:
+
+```bash
+npm publish --access public --otp=123456
+```
+
+3. For CI: [granular npm token](https://www.npmjs.com/settings/iantroisi/tokens) with publish access to `@iantroisi/ui`, GitHub secret **`NPM_TOKEN`**, then a [GitHub Release](https://github.com/Cincinnatus101010/TroisiUI/releases/new).
 
 ## Development
 

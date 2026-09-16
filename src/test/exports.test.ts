@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import * as Troisi from "../index";
 
-/** Runtime exports consumers import from @troisi/ui (types omitted). */
+/** Runtime exports consumers import from @iantroisi/ui (types omitted). */
 const RUNTIME_EXPORTS = [
 	"Accordion",
 	"Alert",

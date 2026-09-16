@@ -3,7 +3,7 @@
   "configVersion": 1,
   "workspaces": {
     "": {
-      "name": "@troisi/ui",
+      "name": "@iantroisi/ui",
       "devDependencies": {
         "@biomejs/biome": "^2.4.15",
         "@testing-library/jest-dom": "^6.9.1",

@@ -108,7 +108,7 @@ describe("component smoke tests", () => {
 		renderWithTroisi(
 			<>
 				<Typography variant="h1">Title</Typography>
-				<Typography variant="code">npm i @troisi/ui</Typography>
+				<Typography variant="code">npm i @iantroisi/ui</Typography>
 				<Icon size="sm" label="dot">
 					<svg viewBox="0 0 16 16" aria-hidden>
 						<title>dot</title>
@@ -120,7 +120,7 @@ describe("component smoke tests", () => {
 		expect(screen.getByRole("heading", { name: "Title" })).toHaveClass(
 			"troisi-text--h1",
 		);
-		expect(screen.getByText("npm i @troisi/ui").tagName).toBe("CODE");
+		expect(screen.getByText("npm i @iantroisi/ui").tagName).toBe("CODE");
 	});
 
 	it("renders form controls", () => {
