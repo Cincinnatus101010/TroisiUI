@@ -60,13 +60,23 @@ CSS uses semantic tokens (`--troisi-bg`, `--troisi-fg`, …) and `color-scheme` 
 
 The package scope **`@iantroisi`** matches the npm user — no org setup required.
 
-**Automatic:** pushing to `main` with changes under `src/components/`, `src/styles/`, exports, hooks, or theme runs the **Publish npm** workflow. If the current `version` is already on npm, CI bumps the **patch** version, publishes, and commits `package.json` with `[skip publish]` so it does not loop.
+**Automatic:** merge to `main` → **CI** runs → **Publish npm** runs only if CI succeeded. Library changes under `src/**` or `package.json` trigger a publish. If that version is already on npm, CI bumps the **patch**, publishes, and commits `package.json` with `[skip publish]`.
 
-**One-time setup:** add a [granular npm token](https://www.npmjs.com/settings/iantroisi/tokens) (publish access to `@iantroisi/ui`) as the GitHub repo secret **`NPM_TOKEN`**.
+**Required (one time):** GitHub secret **`NPM_TOKEN`**
 
-**Manual:** `npm publish --access public --otp=…` locally, or create a [GitHub Release](https://github.com/Cincinnatus101010/TroisiUI/releases/new) to publish the checked-in version (useful for minor/major bumps you set in `package.json` first).
+1. [Create a granular npm token](https://www.npmjs.com/settings/iantroisi/tokens) — **Publish** permission for `@iantroisi/ui` (Automation type).
+2. Add it to the repo: **Settings → Secrets and variables → Actions → New repository secret** → name `NPM_TOKEN`.
 
-Skip auto-publish for a commit by including **`[skip publish]`** in the commit message.
+```bash
+gh secret set NPM_TOKEN --repo Cincinnatus101010/TroisiUI
+# paste token when prompted
+```
+
+Without `NPM_TOKEN`, the publish job fails with `ENEEDAUTH` (npm is never contacted with credentials).
+
+**Manual publish:** Actions → **Publish npm** → **Run workflow** (forces publish when CI is green). Or locally: `npm publish --access public --otp=…`. Or a [GitHub Release](https://github.com/Cincinnatus101010/TroisiUI/releases/new) for a version you set in `package.json` first.
+
+Skip auto-publish for a commit with **`[skip publish]`** in the message.
 
 ## Development
 

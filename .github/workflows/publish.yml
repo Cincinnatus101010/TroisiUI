@@ -1,18 +1,19 @@
 name: Publish npm
 
 on:
-  push:
+  # Always publish after CI passes on main (no race with a parallel publish job).
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
     branches: [main]
-    paths:
-      - "src/components/**"
-      - "src/styles/**"
-      - "src/index.ts"
-      - "src/hooks/**"
-      - "src/theme/**"
-      - "src/build-styles.ts"
   release:
     types: [published]
   workflow_dispatch:
+    inputs:
+      skip_path_check:
+        description: Publish even if this commit did not touch src/ or package.json
+        type: boolean
+        default: true
 
 concurrency:
   group: npm-publish
@@ -22,45 +23,129 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     if: |
-      github.event_name != 'push' ||
-      !contains(github.event.head_commit.message, '[skip publish]')
+      github.event_name == 'workflow_dispatch' ||
+      github.event_name == 'release' ||
+      (
+        github.event_name == 'workflow_run' &&
+        github.event.workflow_run.conclusion == 'success' &&
+        github.event.workflow_run.event == 'push'
+      )
     permissions:
       contents: write
       id-token: write
     steps:
+      - name: Resolve checkout ref
+        id: ref
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_run" ]; then
+            echo "sha=${{ github.event.workflow_run.head_sha }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "sha=${{ github.sha }}" >> "$GITHUB_OUTPUT"
+          fi
+
       - uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          ref: ${{ steps.ref.outputs.sha }}
+          fetch-depth: 2
+
+      - name: Skip version-bump-only commits
+        id: skip
+        run: |
+          if git log -1 --pretty=%B | grep -Fq '[skip publish]'; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            echo "Skipping publish for chore release commit."
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: dorny/paths-filter@v3
+        if: steps.skip.outputs.skip != 'true'
+        id: changes
+        with:
+          filters: |
+            library:
+              - "src/**"
+              - "package.json"
+
+      - name: Decide whether to publish
+        id: gate
+        if: steps.skip.outputs.skip != 'true'
+        run: |
+          if [ "${{ github.event_name }}" = "release" ]; then
+            echo "publish=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            if [ "${{ inputs.skip_path_check }}" = "true" ]; then
+              echo "publish=true" >> "$GITHUB_OUTPUT"
+            elif [ "${{ steps.changes.outputs.library }}" = "true" ]; then
+              echo "publish=true" >> "$GITHUB_OUTPUT"
+            else
+              echo "publish=false" >> "$GITHUB_OUTPUT"
+            fi
+            exit 0
+          fi
+          if [ "${{ steps.changes.outputs.library }}" = "true" ]; then
+            echo "publish=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "publish=false" >> "$GITHUB_OUTPUT"
+            echo "No library changes in this commit; skipping npm publish."
+          fi
+
+      - name: Require NPM_TOKEN
+        if: steps.skip.outputs.skip != 'true' && steps.gate.outputs.publish == 'true'
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          if [ -z "$NPM_TOKEN" ]; then
+            echo "::error title=Missing NPM_TOKEN::Add a granular npm token with publish access to @iantroisi/ui as repository secret NPM_TOKEN. Create one at https://www.npmjs.com/settings/iantroisi/tokens"
+            exit 1
+          fi
+          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> "$HOME/.npmrc"
+          npm whoami
 
       - uses: oven-sh/setup-bun@v2
+        if: steps.skip.outputs.skip != 'true' && steps.gate.outputs.publish == 'true'
         with:
           bun-version: 1.3.11
 
       - uses: actions/setup-node@v4
+        if: steps.skip.outputs.skip != 'true' && steps.gate.outputs.publish == 'true'
         with:
           node-version: 22
           registry-url: https://registry.npmjs.org
 
-      - run: bun install --frozen-lockfile
+      - name: Install and verify package
+        if: steps.skip.outputs.skip != 'true' && steps.gate.outputs.publish == 'true'
+        run: bun install --frozen-lockfile
 
-      - run: bun run prepublishOnly
+      - name: Lint, test, and build
+        if: steps.skip.outputs.skip != 'true' && steps.gate.outputs.publish == 'true'
+        run: bun run prepublishOnly
 
       - name: Bump patch when this version is already on npm
-        if: github.event_name == 'push'
+        if: |
+          steps.skip.outputs.skip != 'true' &&
+          steps.gate.outputs.publish == 'true' &&
+          github.event_name != 'release'
         run: |
           LOCAL=$(node -p "require('./package.json').version")
           if npm view "@iantroisi/ui@${LOCAL}" version >/dev/null 2>&1; then
-            echo "v${LOCAL} is already published; bumping patch"
+            echo "v${LOCAL} is already on npm; bumping patch"
             npm version patch --no-git-tag-version
           fi
 
       - name: Publish to npm
+        if: steps.skip.outputs.skip != 'true' && steps.gate.outputs.publish == 'true'
         run: npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Commit version bump
-        if: github.event_name == 'push'
+        if: |
+          steps.skip.outputs.skip != 'true' &&
+          steps.gate.outputs.publish == 'true' &&
+          github.event_name == 'workflow_run'
         run: |
           if git diff --quiet package.json; then
             echo "No version change to commit"
