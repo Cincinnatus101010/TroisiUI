@@ -46,7 +46,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: ${{ steps.ref.outputs.sha }}
-          fetch-depth: 2
+          fetch-depth: 0
 
       - name: Skip version-bump-only commits
         id: skip
@@ -62,6 +62,8 @@ jobs:
         if: steps.skip.outputs.skip != 'true'
         id: changes
         with:
+          base: ${{ github.event_name == 'workflow_run' && format('{0}^', github.event.workflow_run.head_sha) || 'HEAD^' }}
+          ref: ${{ steps.ref.outputs.sha }}
           filters: |
             library:
               - "src/**"
@@ -145,7 +147,7 @@ jobs:
         if: |
           steps.skip.outputs.skip != 'true' &&
           steps.gate.outputs.publish == 'true' &&
-          github.event_name == 'workflow_run'
+          github.event_name != 'release'
         run: |
           if git diff --quiet package.json; then
             echo "No version change to commit"
