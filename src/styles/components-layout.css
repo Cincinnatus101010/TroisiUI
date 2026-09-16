@@ -153,3 +153,139 @@
 	min-height: 0;
 	overflow: auto;
 }
+
+.troisi-center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	min-width: 0;
+}
+
+.troisi-center--inline {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.troisi-section {
+	display: flex;
+	flex-direction: column;
+	gap: var(--troisi-space-4);
+}
+
+.troisi-section__header {
+	display: flex;
+	flex-direction: column;
+	gap: var(--troisi-space-1);
+}
+
+.troisi-section__title {
+	margin: 0;
+	font-size: var(--troisi-text-lg);
+	font-weight: var(--troisi-weight-semibold);
+	line-height: var(--troisi-leading-tight);
+	color: var(--troisi-fg);
+}
+
+.troisi-section__description {
+	margin: 0;
+	font-size: var(--troisi-text-sm);
+	line-height: var(--troisi-leading-normal);
+	color: var(--troisi-fg-muted);
+}
+
+.troisi-footer {
+	margin-top: auto;
+	border-top: 1px solid var(--troisi-border);
+	background: var(--troisi-bg-elevated);
+}
+
+.troisi-footer__inner {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: var(--troisi-space-6);
+	padding-block: var(--troisi-space-8);
+}
+
+.troisi-footer__brand {
+	font-weight: var(--troisi-weight-semibold);
+	color: var(--troisi-fg);
+}
+
+.troisi-footer__content {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--troisi-space-6);
+	font-size: var(--troisi-text-sm);
+	color: var(--troisi-fg-muted);
+}
+
+.troisi-toolbar {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--troisi-space-2);
+	padding: var(--troisi-space-2) var(--troisi-space-3);
+	border: 1px solid var(--troisi-border);
+	border-radius: var(--troisi-radius-lg);
+	background: var(--troisi-bg-elevated);
+}
+
+.troisi-toolbar--sticky {
+	position: sticky;
+	top: 0;
+	z-index: var(--troisi-z-sticky);
+}
+
+.troisi-panel {
+	display: flex;
+	flex-direction: column;
+	border: 1px solid var(--troisi-border);
+	border-radius: var(--troisi-radius-lg);
+	background: var(--troisi-bg-elevated);
+	box-shadow: var(--troisi-shadow-sm);
+	overflow: hidden;
+}
+
+.troisi-panel__header {
+	padding: var(--troisi-space-4) var(--troisi-space-6) 0;
+}
+
+.troisi-panel__title {
+	margin: 0;
+	font-size: var(--troisi-text-base);
+	font-weight: var(--troisi-weight-semibold);
+	color: var(--troisi-fg);
+}
+
+.troisi-panel__description {
+	margin: var(--troisi-space-1) 0 0;
+	font-size: var(--troisi-text-sm);
+	color: var(--troisi-fg-muted);
+}
+
+.troisi-panel__body {
+	flex: 1 1 auto;
+	min-width: 0;
+}
+
+.troisi-panel--p-0 .troisi-panel__body {
+	padding: 0;
+}
+
+.troisi-panel--p-4 .troisi-panel__body {
+	padding: var(--troisi-space-4);
+}
+
+.troisi-panel--p-6 .troisi-panel__body {
+	padding: var(--troisi-space-6);
+}
+
+.troisi-panel__footer {
+	padding: var(--troisi-space-4) var(--troisi-space-6);
+	border-top: 1px solid var(--troisi-border);
+	background: var(--troisi-bg);
+}

@@ -62,3 +62,20 @@
 	width: 3rem;
 	height: 3rem;
 }
+
+.troisi-kbd {
+	display: inline-block;
+	padding: 0.125rem var(--troisi-space-2);
+	font-family: var(--troisi-font-mono);
+	font-size: var(--troisi-text-xs);
+	line-height: 1.4;
+	color: var(--troisi-fg-muted);
+	background: var(--troisi-bg-elevated);
+	border: 1px solid var(--troisi-border-strong);
+	border-radius: var(--troisi-radius-sm);
+	box-shadow: inset 0 -1px 0 var(--troisi-border);
+}
+
+.troisi-theme-toggle {
+	min-width: 3.5rem;
+}

@@ -6,13 +6,19 @@ import {
 	Alert,
 	AppShell,
 	Avatar,
+	AvatarGroup,
 	Badge,
+	Banner,
+	Blockquote,
 	Box,
 	Breadcrumb,
 	BreadcrumbItem,
 	Button,
+	ButtonGroup,
+	Callout,
 	Card,
 	Carousel,
+	Center,
 	Checkbox,
 	Chip,
 	Code,
@@ -20,16 +26,24 @@ import {
 	ColorInput,
 	CommandPalette,
 	Container,
+	CopyButton,
 	DateInput,
+	DescriptionItem,
+	DescriptionList,
 	Divider,
 	EmptyState,
 	FieldError,
+	Fieldset,
+	Footer,
 	Form,
 	FormField,
 	Grid,
+	Hero,
 	Icon,
 	Image,
 	Input,
+	InputGroup,
+	Kbd,
 	Label,
 	Lightbox,
 	Link,
@@ -37,15 +51,20 @@ import {
 	ListItem,
 	Menu,
 	MenuItem,
+	MobileNav,
 	Modal,
 	Navbar,
+	NavbarLink,
 	PageHeader,
 	Pagination,
+	Panel,
 	Popover,
 	Progress,
 	Radio,
+	RadioGroup,
 	ScrollArea,
 	SearchInput,
+	Section,
 	Select,
 	Sidebar,
 	SidebarContent,
@@ -69,9 +88,11 @@ import {
 	TabsTrigger,
 	Tag,
 	Textarea,
+	ThemeToggle,
 	Timeline,
 	TimelineItem,
 	ToastProvider,
+	Toolbar,
 	Tooltip,
 	Typography,
 	useToast,
@@ -343,8 +364,86 @@ describe("component smoke tests", () => {
 	});
 
 	it("renders utilities", () => {
-		renderWithTroisi(<VisuallyHidden>Hidden</VisuallyHidden>);
+		renderWithTroisi(
+			<>
+				<VisuallyHidden>Hidden</VisuallyHidden>
+				<Center>Centered</Center>
+				<Kbd>⌘K</Kbd>
+				<Section title="Settings" description="Prefs">
+					<DescriptionList>
+						<DescriptionItem term="Plan">Pro</DescriptionItem>
+					</DescriptionList>
+				</Section>
+				<InputGroup leading="@">
+					<Input aria-label="handle" />
+				</InputGroup>
+				<ButtonGroup>
+					<Button type="button" variant="secondary">
+						Left
+					</Button>
+					<Button type="button" variant="secondary">
+						Right
+					</Button>
+				</ButtonGroup>
+				<ThemeToggle />
+			</>,
+		);
 		expect(screen.getByText("Hidden")).toHaveClass("troisi-visually-hidden");
+		expect(document.querySelector(".troisi-navbar__link")).toBeFalsy();
+	});
+
+	it("renders navbar links", () => {
+		renderWithTroisi(
+			<Navbar brand="App">
+				<NavbarLink href="/" active>
+					Home
+				</NavbarLink>
+			</Navbar>,
+		);
+		expect(screen.getByRole("link", { name: "Home" })).toHaveClass(
+			"troisi-navbar__link--active",
+		);
+	});
+
+	it("renders design and layout components", () => {
+		renderWithTroisi(
+			<>
+				<Banner variant="info">Ship week is live</Banner>
+				<Hero
+					eyebrow="Troisi UI"
+					title="Build faster"
+					description="Components that compose."
+					actions={<Button type="button">Start</Button>}
+				/>
+				<Callout title="Tip">Use AppShell for dashboards.</Callout>
+				<Blockquote attribution="Ian">Design systems save time.</Blockquote>
+				<Panel title="Usage" footer="Updated today">
+					<p>Panel body</p>
+				</Panel>
+				<Toolbar sticky>
+					<Button type="button" size="sm" variant="secondary">
+						Edit
+					</Button>
+				</Toolbar>
+				<AvatarGroup max={2}>
+					<Avatar initials="A" />
+					<Avatar initials="B" />
+					<Avatar initials="C" />
+				</AvatarGroup>
+				<Footer brand="Troisi">© 2026</Footer>
+				<Fieldset legend="API key">
+					<CopyButton value="secret" label="Copy key" />
+				</Fieldset>
+				<RadioGroup legend="Size">
+					<Radio name="size" id="s" label="Small" value="s" />
+				</RadioGroup>
+				<MobileNav open={false} onOpen={vi.fn()} onClose={vi.fn()}>
+					<SidebarItem href="#">Item</SidebarItem>
+				</MobileNav>
+			</>,
+		);
+		expect(screen.getByText("Build faster")).toHaveClass("troisi-hero__title");
+		expect(document.querySelector(".troisi-panel")).toBeTruthy();
 	});
 
 	it("toast provider fires toast", async () => {

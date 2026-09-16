@@ -335,3 +335,67 @@
 	position: relative;
 	display: inline-block;
 }
+
+.troisi-callout {
+	padding: var(--troisi-space-4);
+	border-radius: var(--troisi-radius-lg);
+	border: 1px solid var(--troisi-border);
+	border-left-width: 4px;
+	font-size: var(--troisi-text-sm);
+	color: var(--troisi-fg-muted);
+}
+
+.troisi-callout__title {
+	margin: 0 0 var(--troisi-space-1);
+	font-weight: var(--troisi-weight-semibold);
+	color: var(--troisi-fg);
+}
+
+.troisi-callout__body {
+	line-height: var(--troisi-leading-normal);
+}
+
+.troisi-callout--info {
+	border-left-color: var(--troisi-fg-muted);
+	background: var(--troisi-bg-elevated);
+}
+
+.troisi-callout--success {
+	border-left-color: var(--troisi-success);
+	background: var(--troisi-success-bg);
+}
+
+.troisi-callout--warning {
+	border-left-color: var(--troisi-warning);
+	background: var(--troisi-warning-bg);
+}
+
+.troisi-callout--danger {
+	border-left-color: var(--troisi-danger);
+	background: var(--troisi-danger-bg);
+}
+
+.troisi-banner {
+	width: 100%;
+	padding: var(--troisi-space-3) var(--troisi-container-padding-inline);
+	font-size: var(--troisi-text-sm);
+	text-align: center;
+	color: var(--troisi-fg);
+	border-bottom: 1px solid var(--troisi-border);
+}
+
+.troisi-banner--info {
+	background: var(--troisi-bg-elevated);
+}
+
+.troisi-banner--success {
+	background: var(--troisi-success-bg);
+}
+
+.troisi-banner--warning {
+	background: var(--troisi-warning-bg);
+}
+
+.troisi-banner--danger {
+	background: var(--troisi-danger-bg);
+}

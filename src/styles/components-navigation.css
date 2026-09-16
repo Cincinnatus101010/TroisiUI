@@ -55,6 +55,39 @@
 	gap: var(--troisi-space-4);
 }
 
+.troisi-navbar__link {
+	font-size: var(--troisi-text-sm);
+	font-weight: var(--troisi-weight-medium);
+	color: var(--troisi-fg-muted);
+	text-decoration: none;
+	padding: var(--troisi-space-1) var(--troisi-space-2);
+	border-radius: var(--troisi-radius-md);
+}
+
+.troisi-navbar__link:hover {
+	color: var(--troisi-fg);
+	background: var(--troisi-border);
+}
+
+.troisi-navbar__link--active {
+	color: var(--troisi-fg);
+	background: var(--troisi-border);
+}
+
+.troisi-mobile-nav__trigger {
+	display: inline-flex;
+}
+
+.troisi-mobile-nav {
+	display: flex;
+	flex-direction: column;
+	gap: var(--troisi-space-1);
+}
+
+.troisi-mobile-nav__drawer {
+	width: min(18rem, 100%);
+}
+
 .troisi-sidebar {
 	display: flex;
 	flex-direction: column;
