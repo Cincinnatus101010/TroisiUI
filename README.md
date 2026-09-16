@@ -108,7 +108,7 @@ Vitest + Testing Library + happy-dom:
 | **Tokens** | CSS variables, `troisiTokens` |
 | **Typography** | `Typography` (display, headings, body, caption, code) |
 | **Layout** | `Box`, `Container`, `Grid`, `Stack`, `Divider`, `Spacer` |
-| **Forms** | `Button`, `Input`, `Textarea`, `Select`, `Checkbox`, `Radio`, `Switch`, `Slider`, `FileInput`, `DateInput`, `ColorInput`, `SearchInput`, `Form`, `FormField`, `Label`, `FieldHelper`, `FieldError` |
+| **Forms** | `Button`, `Input`, `Textarea`, `Select`, `Combobox`, `Checkbox`, `Radio`, `Switch`, `Slider`, `FileInput`, `DateInput`, `ColorInput`, `SearchInput`, `Form`, `FormField`, `Label`, `FieldHelper`, `FieldError` |
 | **Navigation** | `Link`, `Navbar`, `Sidebar`, `Tabs`, `Breadcrumb`, `Pagination`, `Stepper`, `Menu`, `CommandPalette` |
 | **Feedback** | `Alert`, `Spinner`, `Skeleton`, `Progress`, `Modal`, `Drawer`, `ToastProvider` / `useToast`, `Tooltip`, `Popover` |
 | **Data** | `Table`, `Card`, `List`, `Badge`, `Tag`, `Chip`, `Avatar`, `Stat`, `Timeline`, `Accordion`, `Carousel`, `EmptyState`, `Code`, `CodeBlock` |

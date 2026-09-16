@@ -25,6 +25,7 @@ const RUNTIME_EXPORTS = [
 	"Code",
 	"CodeBlock",
 	"ColorInput",
+	"Combobox",
 	"CommandPalette",
 	"Container",
 	"CopyButton",

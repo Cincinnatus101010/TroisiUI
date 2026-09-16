@@ -24,6 +24,7 @@ import {
 	Code,
 	CodeBlock,
 	ColorInput,
+	Combobox,
 	CommandPalette,
 	Container,
 	CopyButton,
@@ -160,6 +161,10 @@ describe("component smoke tests", () => {
 				<Select aria-label="plan">
 					<option>Free</option>
 				</Select>
+				<Combobox
+					aria-label="team"
+					options={[{ value: "eng", label: "Engineering" }]}
+				/>
 				<Checkbox id="agree" label="Agree" />
 				<Radio name="r" id="r1" label="A" value="a" />
 				<Switch id="sw" label="On" />

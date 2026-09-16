@@ -55,6 +55,11 @@ export { Code, type CodeProps } from "./components/Code";
 export { CodeBlock, type CodeBlockProps } from "./components/CodeBlock";
 export { ColorInput, type ColorInputProps } from "./components/ColorInput";
 export {
+	Combobox,
+	type ComboboxOption,
+	type ComboboxProps,
+} from "./components/Combobox";
+export {
 	type CommandItem,
 	CommandPalette,
 	type CommandPaletteProps,
