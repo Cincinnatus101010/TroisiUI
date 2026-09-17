@@ -19,6 +19,9 @@ Needs GitHub secret `NPM_TOKEN` (granular npm token with publish permission for 
 
 ```bash
 gh secret set NPM_TOKEN --repo Cincinnatus101010/TroisiUI
+gh secret set CROSS_REPO_GITHUB_TOKEN --repo Cincinnatus101010/TroisiUI
 ```
+
+To copy `NPM_TOKEN` onto **steddy** or **sickmaps**, run Actions → **Copy NPM_TOKEN to steddy and sickmaps** (needs both secrets above).
 
 Manual publish: Actions → **Publish npm** → **Run workflow**, or `npm publish --access public --otp=…`. Skip auto-publish with `[skip publish]` in the commit message.
