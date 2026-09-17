@@ -158,4 +158,4 @@ jobs:
           VERSION=$(node -p "require('./package.json').version")
           git add package.json
           git commit -m "chore: release v${VERSION} [skip publish]"
-          git push
+          git push origin "HEAD:${GITHUB_REF_NAME}"
