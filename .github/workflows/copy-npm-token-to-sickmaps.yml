@@ -1,0 +1,25 @@
+name: Copy NPM_TOKEN to sickmaps
+
+on:
+  workflow_dispatch:
+
+jobs:
+  copy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Copy NPM_TOKEN to sickmaps repo
+        run: |
+          set -euo pipefail
+          if [ -z "${NPM_TOKEN}" ]; then
+            echo "::error::NPM_TOKEN is empty on TroisiUI"
+            exit 1
+          fi
+          if [ -z "${GH_TOKEN}" ]; then
+            echo "::error::CROSS_REPO_GITHUB_TOKEN is empty"
+            exit 1
+          fi
+          printf '%s' "$NPM_TOKEN" | gh secret set NPM_TOKEN --repo Cincinnatus101010/sickmaps
+          echo "Copied NPM_TOKEN to Cincinnatus101010/sickmaps"
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GH_TOKEN: ${{ secrets.CROSS_REPO_GITHUB_TOKEN }}

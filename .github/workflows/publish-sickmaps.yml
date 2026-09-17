@@ -14,6 +14,8 @@ jobs:
     permissions:
       contents: read
       id-token: write
+    env:
+      NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -25,15 +27,12 @@ jobs:
           node-version: 22
           registry-url: https://registry.npmjs.org
 
-      - name: Require NPM_TOKEN
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Verify npm auth
         run: |
-          if [ -z "$NPM_TOKEN" ]; then
+          if [ -z "$NODE_AUTH_TOKEN" ]; then
             echo "::error::Missing NPM_TOKEN repository secret."
             exit 1
           fi
-          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> "$HOME/.npmrc"
           npm whoami
 
       - name: Install and build
@@ -41,5 +40,3 @@ jobs:
 
       - name: Publish to npm
         run: npm publish --provenance --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
