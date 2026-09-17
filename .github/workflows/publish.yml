@@ -39,14 +39,19 @@ jobs:
         run: |
           if [ "${{ github.event_name }}" = "workflow_run" ]; then
             echo "sha=${{ github.event.workflow_run.head_sha }}" >> "$GITHUB_OUTPUT"
+            echo "branch=${{ github.event.workflow_run.head_branch }}" >> "$GITHUB_OUTPUT"
           else
             echo "sha=${{ github.sha }}" >> "$GITHUB_OUTPUT"
+            echo "branch=${{ github.ref_name }}" >> "$GITHUB_OUTPUT"
           fi
 
       - uses: actions/checkout@v4
         with:
-          ref: ${{ steps.ref.outputs.sha }}
+          ref: ${{ steps.ref.outputs.branch }}
           fetch-depth: 0
+
+      - name: Check out the exact commit
+        run: git reset --hard "${{ steps.ref.outputs.sha }}"
 
       - name: Skip version-bump-only commits
         id: skip
@@ -158,4 +163,4 @@ jobs:
           VERSION=$(node -p "require('./package.json').version")
           git add package.json
           git commit -m "chore: release v${VERSION} [skip publish]"
-          git push origin "HEAD:${GITHUB_REF_NAME}"
+          git push origin "HEAD:${{ steps.ref.outputs.branch }}"
