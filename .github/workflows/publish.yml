@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
     inputs:
       skip_path_check:
-        description: Publish even if this commit did not touch src/ or package.json
+        description: Publish even if this commit did not touch src/, package.json, or README.md
         type: boolean
         default: true
 
@@ -63,7 +63,7 @@ jobs:
         id: changes
         run: |
           PARENT="$(git rev-parse HEAD^)"
-          if git diff --name-only "$PARENT" HEAD | grep -Eq '^src/|^package\.json$'; then
+          if git diff --name-only "$PARENT" HEAD | grep -Eq '^src/|^package\.json$|^README\.md$'; then
             echo "library=true" >> "$GITHUB_OUTPUT"
           else
             echo "library=false" >> "$GITHUB_OUTPUT"

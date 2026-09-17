@@ -13,7 +13,7 @@ Tests: Vitest + Testing Library + happy-dom. Coverage includes export completene
 
 ## Publishing
 
-Merge to `main` → CI → **Publish npm** if CI succeeded. Changes under `src/**` or `package.json` trigger a publish. If that version is already on npm, CI bumps the patch, publishes, and commits `package.json` with `[skip publish]`.
+Merge to `main` → CI → **Publish npm** if CI succeeded. Changes under `src/**`, `package.json`, or `README.md` trigger a publish. If that version is already on npm, CI bumps the patch, publishes, and commits `package.json` with `[skip publish]`.
 
 Needs GitHub secret `NPM_TOKEN` (granular npm token with publish permission for `@iantroisi/ui`).
 
