@@ -1,21 +1,15 @@
 # Troisi UI (`@iantroisi/ui`)
 
-Open-source React component library with a **from-scratch CSS design system** — no Tailwind. Full **light / dark / system** theme support.
+React 19 component library with a from-scratch CSS design system — no Tailwind. Light, dark, and system themes.
 
 ## Install
-
-Published on npm as **`@iantroisi/ui`** (requires React 19):
 
 ```bash
 npm install @iantroisi/ui
 # or: bun add @iantroisi/ui   |   pnpm add @iantroisi/ui
 ```
 
-Until the first npm release, install from GitHub:
-
-```bash
-npm install github:Cincinnatus101010/TroisiUI
-```
+Peer dependency: React 19.
 
 ```tsx
 import "@iantroisi/ui/styles.css";
@@ -45,76 +39,30 @@ Next.js: add `transpilePackages: ["@iantroisi/ui"]` in `next.config`.
 | **Dark** | `data-troisi-theme="dark"` |
 
 ```tsx
-import { ThemeProvider, useTheme, applyTheme } from "@iantroisi/ui";
+import { ThemeProvider, ThemeToggle, useTheme, applyTheme } from "@iantroisi/ui";
 
-// React API
 const { theme, setTheme, resolvedTheme } = useTheme();
 
 // Imperative (e.g. Storybook)
 applyTheme(document.documentElement, "dark");
 ```
 
-CSS uses semantic tokens (`--troisi-bg`, `--troisi-fg`, …) and `color-scheme` for native controls.
+CSS uses semantic tokens (`--troisi-bg`, `--troisi-fg`, …) and `color-scheme` for native controls. `<ThemeToggle />` cycles light / dark / system.
 
-## Publishing (maintainers)
-
-The package scope **`@iantroisi`** matches the npm user — no org setup required.
-
-**Automatic:** merge to `main` → **CI** runs → **Publish npm** runs only if CI succeeded. Library changes under `src/**` or `package.json` trigger a publish. If that version is already on npm, CI bumps the **patch**, publishes, and commits `package.json` with `[skip publish]`.
-
-**Required (one time):** GitHub secret **`NPM_TOKEN`**
-
-1. [Create a granular npm token](https://www.npmjs.com/settings/iantroisi/tokens) — **Publish** permission for `@iantroisi/ui` (Automation type).
-2. Add it to the repo: **Settings → Secrets and variables → Actions → New repository secret** → name `NPM_TOKEN`.
-
-```bash
-gh secret set NPM_TOKEN --repo Cincinnatus101010/TroisiUI
-# paste token when prompted
-```
-
-Without `NPM_TOKEN`, the publish job fails with `ENEEDAUTH` (npm is never contacted with credentials).
-
-**Manual publish:** Actions → **Publish npm** → **Run workflow** (forces publish when CI is green). Or locally: `npm publish --access public --otp=…`. Or a [GitHub Release](https://github.com/Cincinnatus101010/TroisiUI/releases/new) for a version you set in `package.json` first.
-
-Skip auto-publish for a commit with **`[skip publish]`** in the message.
-
-## Development
-
-```bash
-bun install
-bun run build
-bun run dev
-bun run typecheck
-bun run lint
-bun run test          # unit tests
-bun run test:watch
-bun run test:coverage
-```
-
-## Testing
-
-Vitest + Testing Library + happy-dom:
-
-- **Export completeness** — every public runtime symbol
-- **Component smoke** — render + key interactions (tabs, modal, toast, command palette)
-- **Theme utilities** — `applyTheme`, `resolveTheme`, `ThemeProvider`
-- **CSS** — light/dark selectors in `tokens.css` and bundled `styles.css`
-
-## Component inventory
+## Components
 
 | Category | Components |
 |----------|------------|
-| **Theme** | `ThemeProvider`, `useTheme`, `applyTheme`, `resolveTheme` |
-| **Tokens** | CSS variables, `troisiTokens` |
+| **Theme** | `ThemeProvider`, `ThemeToggle`, `useTheme`, `applyTheme`, `resolveTheme` |
 | **Typography** | `Typography` (display, headings, body, caption, code) |
-| **Layout** | `Box`, `Container`, `Grid`, `Stack`, `Divider`, `Spacer` |
-| **Forms** | `Button`, `Input`, `Textarea`, `Select`, `Combobox`, `Checkbox`, `Radio`, `Switch`, `Slider`, `FileInput`, `DateInput`, `ColorInput`, `SearchInput`, `Form`, `FormField`, `Label`, `FieldHelper`, `FieldError` |
-| **Navigation** | `Link`, `Navbar`, `Sidebar`, `Tabs`, `Breadcrumb`, `Pagination`, `Stepper`, `Menu`, `CommandPalette` |
-| **Feedback** | `Alert`, `Spinner`, `Skeleton`, `Progress`, `Modal`, `Drawer`, `ToastProvider` / `useToast`, `Tooltip`, `Popover` |
-| **Data** | `Table`, `Card`, `List`, `Badge`, `Tag`, `Chip`, `Avatar`, `Stat`, `Timeline`, `Accordion`, `Carousel`, `EmptyState`, `Code`, `CodeBlock` |
+| **Layout** | `AppShell`, `Box`, `Center`, `Container`, `Grid`, `Stack`, `Divider`, `Spacer`, `Section`, `PageHeader`, `Hero`, `Footer`, `Toolbar` |
+| **Forms** | `Button`, `ButtonGroup`, `Input`, `InputGroup`, `Textarea`, `Select`, `Combobox`, `Checkbox`, `Radio`, `RadioGroup`, `Switch`, `Slider`, `FileInput`, `DateInput`, `ColorInput`, `SearchInput`, `Form`, `FormField`, `Fieldset`, `Label`, `FieldHelper`, `FieldError` |
+| **Navigation** | `Link`, `Navbar`, `NavbarLink`, `Sidebar`, `Tabs`, `Breadcrumb`, `Pagination`, `Stepper`, `Menu`, `MobileNav`, `CommandPalette` |
+| **Feedback** | `Alert`, `Banner`, `Callout`, `Spinner`, `Skeleton`, `Progress`, `Modal`, `Drawer`, `ToastProvider` / `useToast`, `Tooltip`, `Popover` |
+| **Data** | `Table`, `Card`, `Panel`, `List`, `Badge`, `Tag`, `Chip`, `Avatar`, `AvatarGroup`, `Stat`, `Timeline`, `Accordion`, `Carousel`, `EmptyState`, `Code`, `CodeBlock`, `CopyButton`, `DescriptionList`, `Kbd` |
 | **Media** | `Image`, `Video`, `Lightbox` |
-| **Utility** | `Portal`, `VisuallyHidden`, `FocusTrap`, `ClickOutside`, `ScrollArea`, `ResizeObserverBox`, `Icon`, `joinClasses` |
-| **Hooks** | `useClickOutside`, `useFocusTrap`, `useResizeObserver` |
+| **Utility** | `Portal`, `VisuallyHidden`, `FocusTrap`, `ScrollArea`, `Icon`, `joinClasses` |
+| **Hooks** | `useClickOutside`, `useFocusTrap`, `useDisclosure`, `useMediaQuery`, `useLocalStorage` |
 
 ## License
 
