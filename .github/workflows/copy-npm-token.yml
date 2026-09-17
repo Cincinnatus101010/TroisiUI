@@ -1,4 +1,4 @@
-name: Copy NPM_TOKEN to sickmaps
+name: Copy NPM_TOKEN to steddy and sickmaps
 
 on:
   workflow_dispatch:
@@ -7,7 +7,7 @@ jobs:
   copy:
     runs-on: ubuntu-latest
     steps:
-      - name: Copy NPM_TOKEN to sickmaps repo
+      - name: Copy NPM_TOKEN to dependent repos
         run: |
           set -euo pipefail
           if [ -z "${NPM_TOKEN}" ]; then
@@ -15,11 +15,12 @@ jobs:
             exit 1
           fi
           if [ -z "${GH_TOKEN}" ]; then
-            echo "::error::CROSS_REPO_GITHUB_TOKEN is empty"
+            echo "::error::CROSS_REPO_GITHUB_TOKEN is empty (same PAT used for the steddy copy)."
             exit 1
           fi
+          printf '%s' "$NPM_TOKEN" | gh secret set NPM_TOKEN --repo Cincinnatus101010/steddy
           printf '%s' "$NPM_TOKEN" | gh secret set NPM_TOKEN --repo Cincinnatus101010/sickmaps
-          echo "Copied NPM_TOKEN to Cincinnatus101010/sickmaps"
+          echo "Copied NPM_TOKEN to steddy and sickmaps"
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GH_TOKEN: ${{ secrets.CROSS_REPO_GITHUB_TOKEN }}
