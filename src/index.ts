@@ -121,6 +121,10 @@ export { MobileNav, type MobileNavProps } from "./components/MobileNav";
 export { Modal, type ModalProps } from "./components/Modal";
 export { Navbar, type NavbarProps } from "./components/Navbar";
 export { NavbarLink, type NavbarLinkProps } from "./components/NavbarLink";
+export {
+	NumberInput,
+	type NumberInputProps,
+} from "./components/NumberInput";
 export { PageHeader, type PageHeaderProps } from "./components/PageHeader";
 export { Pagination, type PaginationProps } from "./components/Pagination";
 export { Panel, type PanelProps } from "./components/Panel";
@@ -129,6 +133,7 @@ export { Portal, type PortalProps } from "./components/Portal";
 export { Progress, type ProgressProps } from "./components/Progress";
 export { Radio, type RadioProps } from "./components/Radio";
 export { RadioGroup, type RadioGroupProps } from "./components/RadioGroup";
+export { Rating, type RatingProps } from "./components/Rating";
 export { ScrollArea, type ScrollAreaProps } from "./components/ScrollArea";
 export { SearchInput, type SearchInputProps } from "./components/SearchInput";
 export { Section, type SectionProps } from "./components/Section";
@@ -198,6 +203,11 @@ export {
 	type TimelineProps,
 } from "./components/Timeline";
 export { type ToastMessage, ToastProvider, useToast } from "./components/Toast";
+export {
+	ToggleGroup,
+	type ToggleGroupOption,
+	type ToggleGroupProps,
+} from "./components/ToggleGroup";
 export { Toolbar, type ToolbarProps } from "./components/Toolbar";
 export { Tooltip, type TooltipProps } from "./components/Tooltip";
 export {
@@ -221,6 +231,11 @@ export {
 } from "./hooks";
 export { joinClasses } from "./lib/joinClasses";
 export {
+	applyPreset,
+	applyPresetToDocument,
+	readPreset,
+} from "./theme/applyPreset";
+export {
 	applyTheme,
 	applyThemeToDocument,
 	getSystemPrefersDark,
@@ -228,7 +243,10 @@ export {
 	resolveTheme,
 } from "./theme/applyTheme";
 export {
+	TROISI_PRESET_ATTR,
+	TROISI_PRESETS,
 	TROISI_THEME_ATTR,
+	type TroisiPreset,
 	type TroisiResolvedTheme,
 	type TroisiTheme,
 } from "./theme/constants";

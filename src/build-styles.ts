@@ -3,6 +3,7 @@ import { join } from "node:path";
 
 const STYLE_FILES = [
 	"tokens.css",
+	"presets.css",
 	"reset.css",
 	"components.css",
 	"components-layout.css",

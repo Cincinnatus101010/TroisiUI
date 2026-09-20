@@ -2,6 +2,8 @@
 
 React 19 component library with a from-scratch CSS design system — no Tailwind. Light, dark, and system themes.
 
+**Docs & demos:** [https://cincinnatus101010.github.io/TroisiUI-docs/](https://cincinnatus101010.github.io/TroisiUI-docs/) ([source](https://github.com/Cincinnatus101010/TroisiUI-docs))
+
 ## Install
 
 ```bash
@@ -49,14 +51,34 @@ applyTheme(document.documentElement, "dark");
 
 CSS uses semantic tokens (`--troisi-bg`, `--troisi-fg`, …) and `color-scheme` for native controls. `<ThemeToggle />` cycles light / dark / system.
 
+### Accent presets
+
+Set `data-troisi-preset` on `.troisi-root` (or let `ThemeProvider` handle it):
+
+| Preset | Description |
+|--------|-------------|
+| `default` | Neutral zinc primary (built-in) |
+| `ocean` | Sky blue accent |
+| `forest` | Emerald accent |
+| `rose` | Rose accent |
+| `high-contrast` | Strong borders and contrast |
+
+```tsx
+<ThemeProvider defaultTheme="system" defaultPreset="ocean" storageKey="troisi-theme">
+  …
+</ThemeProvider>
+
+const { preset, setPreset } = useTheme();
+```
+
 ## Components
 
 | Category | Components |
 |----------|------------|
-| **Theme** | `ThemeProvider`, `ThemeToggle`, `useTheme`, `applyTheme`, `resolveTheme` |
+| **Theme** | `ThemeProvider`, `ThemeToggle`, `useTheme`, `applyTheme`, `applyPreset`, `resolveTheme`, `TROISI_PRESETS` |
 | **Typography** | `Typography` (display, headings, body, caption, code) |
 | **Layout** | `AppShell`, `Box`, `Center`, `Container`, `Grid`, `Stack`, `Divider`, `Spacer`, `Section`, `PageHeader`, `Hero`, `Footer`, `Toolbar` |
-| **Forms** | `Button`, `ButtonGroup`, `Input`, `InputGroup`, `Textarea`, `Select`, `Combobox`, `Checkbox`, `Radio`, `RadioGroup`, `Switch`, `Slider`, `FileInput`, `DateInput`, `ColorInput`, `SearchInput`, `Form`, `FormField`, `Fieldset`, `Label`, `FieldHelper`, `FieldError` |
+| **Forms** | `Button`, `ButtonGroup`, `Input`, `InputGroup`, `Textarea`, `Select`, `Combobox`, `Checkbox`, `Radio`, `RadioGroup`, `Switch`, `Slider`, `ToggleGroup`, `Rating`, `NumberInput`, `FileInput`, `DateInput`, `ColorInput`, `SearchInput`, `Form`, `FormField`, `Fieldset`, `Label`, `FieldHelper`, `FieldError` |
 | **Navigation** | `Link`, `Navbar`, `NavbarLink`, `Sidebar`, `Tabs`, `Breadcrumb`, `Pagination`, `Stepper`, `Menu`, `MobileNav`, `CommandPalette` |
 | **Feedback** | `Alert`, `Banner`, `Callout`, `Spinner`, `Skeleton`, `Progress`, `Modal`, `Drawer`, `ToastProvider` / `useToast`, `Tooltip`, `Popover` |
 | **Data** | `Table`, `Card`, `Panel`, `List`, `Badge`, `Tag`, `Chip`, `Avatar`, `AvatarGroup`, `Stat`, `Timeline`, `Accordion`, `Carousel`, `EmptyState`, `Code`, `CodeBlock`, `CopyButton`, `DescriptionList`, `Kbd` |

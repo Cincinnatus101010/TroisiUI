@@ -56,6 +56,7 @@ import {
 	Modal,
 	Navbar,
 	NavbarLink,
+	NumberInput,
 	PageHeader,
 	Pagination,
 	Panel,
@@ -63,6 +64,7 @@ import {
 	Progress,
 	Radio,
 	RadioGroup,
+	Rating,
 	ScrollArea,
 	SearchInput,
 	Section,
@@ -93,6 +95,7 @@ import {
 	Timeline,
 	TimelineItem,
 	ToastProvider,
+	ToggleGroup,
 	Toolbar,
 	Tooltip,
 	Typography,
@@ -169,6 +172,16 @@ describe("component smoke tests", () => {
 				<Radio name="r" id="r1" label="A" value="a" />
 				<Switch id="sw" label="On" />
 				<Slider aria-label="volume" defaultValue={50} />
+				<ToggleGroup
+					aria-label="view"
+					defaultValue="list"
+					options={[
+						{ value: "list", label: "List" },
+						{ value: "grid", label: "Grid" },
+					]}
+				/>
+				<Rating defaultValue={3} />
+				<NumberInput aria-label="quantity" defaultValue={2} min={0} max={10} />
 				<SearchInput aria-label="search" />
 				<ColorInput aria-label="color" defaultValue="#000000" />
 				<DateInput aria-label="date" />

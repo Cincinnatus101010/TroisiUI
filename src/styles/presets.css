@@ -1,0 +1,160 @@
+/* Accent presets — override primary / focus tokens per data-troisi-preset */
+
+/* Ocean — light */
+:root[data-troisi-preset="ocean"]:not([data-troisi-theme="dark"]),
+:root[data-troisi-preset="ocean"][data-troisi-theme="light"],
+.troisi-root[data-troisi-preset="ocean"]:not([data-troisi-theme="dark"]),
+.troisi-root[data-troisi-preset="ocean"][data-troisi-theme="light"] {
+	--troisi-primary: #0369a1;
+	--troisi-primary-fg: #f0f9ff;
+	--troisi-primary-hover: #0284c7;
+	--troisi-focus-ring: #38bdf8;
+}
+
+/* Ocean — dark */
+:root[data-troisi-preset="ocean"][data-troisi-theme="dark"],
+.troisi-root[data-troisi-preset="ocean"][data-troisi-theme="dark"] {
+	--troisi-primary: #38bdf8;
+	--troisi-primary-fg: #082f49;
+	--troisi-primary-hover: #7dd3fc;
+	--troisi-focus-ring: #0ea5e9;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root[data-troisi-preset="ocean"]:not([data-troisi-theme="light"]):not(
+		[data-troisi-theme="dark"]
+	),
+	.troisi-root[data-troisi-preset="ocean"]:not([data-troisi-theme="light"]):not(
+		[data-troisi-theme="dark"]
+	) {
+		--troisi-primary: #38bdf8;
+		--troisi-primary-fg: #082f49;
+		--troisi-primary-hover: #7dd3fc;
+		--troisi-focus-ring: #0ea5e9;
+	}
+}
+
+/* Forest — light */
+:root[data-troisi-preset="forest"]:not([data-troisi-theme="dark"]),
+:root[data-troisi-preset="forest"][data-troisi-theme="light"],
+.troisi-root[data-troisi-preset="forest"]:not([data-troisi-theme="dark"]),
+.troisi-root[data-troisi-preset="forest"][data-troisi-theme="light"] {
+	--troisi-primary: #047857;
+	--troisi-primary-fg: #ecfdf5;
+	--troisi-primary-hover: #059669;
+	--troisi-focus-ring: #34d399;
+}
+
+/* Forest — dark */
+:root[data-troisi-preset="forest"][data-troisi-theme="dark"],
+.troisi-root[data-troisi-preset="forest"][data-troisi-theme="dark"] {
+	--troisi-primary: #34d399;
+	--troisi-primary-fg: #022c22;
+	--troisi-primary-hover: #6ee7b7;
+	--troisi-focus-ring: #10b981;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root[data-troisi-preset="forest"]:not([data-troisi-theme="light"]):not(
+		[data-troisi-theme="dark"]
+	),
+	.troisi-root[data-troisi-preset="forest"]:not(
+		[data-troisi-theme="light"]
+	):not([data-troisi-theme="dark"]) {
+		--troisi-primary: #34d399;
+		--troisi-primary-fg: #022c22;
+		--troisi-primary-hover: #6ee7b7;
+		--troisi-focus-ring: #10b981;
+	}
+}
+
+/* Rose — light */
+:root[data-troisi-preset="rose"]:not([data-troisi-theme="dark"]),
+:root[data-troisi-preset="rose"][data-troisi-theme="light"],
+.troisi-root[data-troisi-preset="rose"]:not([data-troisi-theme="dark"]),
+.troisi-root[data-troisi-preset="rose"][data-troisi-theme="light"] {
+	--troisi-primary: #be123c;
+	--troisi-primary-fg: #fff1f2;
+	--troisi-primary-hover: #e11d48;
+	--troisi-focus-ring: #fb7185;
+}
+
+/* Rose — dark */
+:root[data-troisi-preset="rose"][data-troisi-theme="dark"],
+.troisi-root[data-troisi-preset="rose"][data-troisi-theme="dark"] {
+	--troisi-primary: #fb7185;
+	--troisi-primary-fg: #4c0519;
+	--troisi-primary-hover: #fda4af;
+	--troisi-focus-ring: #f43f5e;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root[data-troisi-preset="rose"]:not([data-troisi-theme="light"]):not(
+		[data-troisi-theme="dark"]
+	),
+	.troisi-root[data-troisi-preset="rose"]:not([data-troisi-theme="light"]):not(
+		[data-troisi-theme="dark"]
+	) {
+		--troisi-primary: #fb7185;
+		--troisi-primary-fg: #4c0519;
+		--troisi-primary-hover: #fda4af;
+		--troisi-focus-ring: #f43f5e;
+	}
+}
+
+/* High contrast — light */
+:root[data-troisi-preset="high-contrast"]:not([data-troisi-theme="dark"]),
+:root[data-troisi-preset="high-contrast"][data-troisi-theme="light"],
+.troisi-root[data-troisi-preset="high-contrast"]:not(
+	[data-troisi-theme="dark"]
+),
+.troisi-root[data-troisi-preset="high-contrast"][data-troisi-theme="light"] {
+	--troisi-bg: #ffffff;
+	--troisi-bg-elevated: #ffffff;
+	--troisi-fg: #000000;
+	--troisi-fg-muted: #1a1a1a;
+	--troisi-fg-subtle: #333333;
+	--troisi-border: #000000;
+	--troisi-border-strong: #000000;
+	--troisi-primary: #000000;
+	--troisi-primary-fg: #ffffff;
+	--troisi-primary-hover: #262626;
+	--troisi-focus-ring: #000000;
+}
+
+/* High contrast — dark */
+:root[data-troisi-preset="high-contrast"][data-troisi-theme="dark"],
+.troisi-root[data-troisi-preset="high-contrast"][data-troisi-theme="dark"] {
+	--troisi-bg: #000000;
+	--troisi-bg-elevated: #0a0a0a;
+	--troisi-fg: #ffffff;
+	--troisi-fg-muted: #e5e5e5;
+	--troisi-fg-subtle: #cccccc;
+	--troisi-border: #ffffff;
+	--troisi-border-strong: #ffffff;
+	--troisi-primary: #ffffff;
+	--troisi-primary-fg: #000000;
+	--troisi-primary-hover: #e5e5e5;
+	--troisi-focus-ring: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root[data-troisi-preset="high-contrast"]:not(
+		[data-troisi-theme="light"]
+	):not([data-troisi-theme="dark"]),
+	.troisi-root[data-troisi-preset="high-contrast"]:not(
+		[data-troisi-theme="light"]
+	):not([data-troisi-theme="dark"]) {
+		--troisi-bg: #000000;
+		--troisi-bg-elevated: #0a0a0a;
+		--troisi-fg: #ffffff;
+		--troisi-fg-muted: #e5e5e5;
+		--troisi-fg-subtle: #cccccc;
+		--troisi-border: #ffffff;
+		--troisi-border-strong: #ffffff;
+		--troisi-primary: #ffffff;
+		--troisi-primary-fg: #000000;
+		--troisi-primary-hover: #e5e5e5;
+		--troisi-focus-ring: #ffffff;
+	}
+}

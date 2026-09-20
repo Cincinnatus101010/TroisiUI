@@ -9,6 +9,8 @@ bun run lint
 bun run test
 ```
 
+Docs site: [Cincinnatus101010/TroisiUI-docs](https://github.com/Cincinnatus101010/TroisiUI-docs) (separate repo; consumes `@iantroisi/ui` from npm).
+
 Tests: Vitest + Testing Library + happy-dom. Coverage includes export completeness, component smoke tests, theme utilities, and CSS light/dark selectors.
 
 ## Publishing
