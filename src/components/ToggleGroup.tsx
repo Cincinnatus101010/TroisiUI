@@ -1,7 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { useId } from "react";
+import { useId, useState } from "react";
 import { joinClasses } from "../lib/joinClasses";
 
 export interface ToggleGroupOption {
@@ -32,6 +32,15 @@ export function ToggleGroup({
 	const autoId = useId();
 	const isControlled = value !== undefined;
 	const groupName = name ?? autoId;
+	const [uncontrolledValue, setUncontrolledValue] = useState(
+		defaultValue ?? options[0]?.value,
+	);
+	const activeValue = isControlled ? value : uncontrolledValue;
+
+	const select = (next: string) => {
+		if (!isControlled) setUncontrolledValue(next);
+		onValueChange?.(next);
+	};
 
 	return (
 		<div
@@ -40,9 +49,7 @@ export function ToggleGroup({
 			aria-label={ariaLabel}
 		>
 			{options.map((option) => {
-				const checked = isControlled
-					? value === option.value
-					: defaultValue === option.value;
+				const checked = activeValue === option.value;
 				return (
 					<label
 						key={option.value}
@@ -57,10 +64,9 @@ export function ToggleGroup({
 							className="troisi-toggle-group__input"
 							name={groupName}
 							value={option.value}
-							checked={isControlled ? checked : undefined}
-							defaultChecked={!isControlled ? checked : undefined}
+							checked={checked}
 							disabled={option.disabled}
-							onChange={() => onValueChange?.(option.value)}
+							onChange={() => select(option.value)}
 						/>
 						<span className="troisi-toggle-group__label">{option.label}</span>
 					</label>
